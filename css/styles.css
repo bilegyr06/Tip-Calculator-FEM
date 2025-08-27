@@ -61,7 +61,7 @@ main{
     place-content: center;
 }
 
-label, legend{
+label, h2{
     font-size: calc(var(--font_size) - .7rem);
     margin-block-end: .5rem;
     color: var(--green_label);
@@ -128,10 +128,16 @@ fieldset:last-of-type label, fieldset:first-of-type label{
     grid-template-rows: repeat(3,1fr);
     row-gap: .7rem;
     justify-items: center;
+    list-style-type: none;
+}
+
+.button_group li{
+    width: 100%;
 }
 
 .tip_perc{
     width:100%;
+    height: 2.2rem;
     color: var(--white);
     font-size: var(--font_family);
     border: var(--border);
@@ -251,6 +257,7 @@ fieldset:last-of-type label, fieldset:first-of-type label{
         grid-template-columns: repeat(3, 1fr);
         grid-template-rows: repeat(2, 1fr);
     }
+
 
     .results{
         padding: 2rem;
