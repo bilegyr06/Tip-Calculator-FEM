@@ -31,7 +31,7 @@ body{
     background-color: var(--green_body);
 }
 
-header{
+h1{
     display: flex;
     justify-content: center;
     padding:1.2rem 0;
@@ -228,7 +228,7 @@ fieldset:last-of-type label, fieldset:first-of-type label{
         place-content: center;
     }
 
-    header{
+    h1{
         margin-block-end: 3rem;
         padding: 0;
         
