@@ -17,29 +17,20 @@ let tip_perc = 0
 // var functions
 handle_tip = (e) => {
     tip_btn_list.forEach(tip_btn => {   
-        tip_btn.style.backgroundColor = 'var(--green_neutral)'
-        tip_btn.style.color = 'var(--white)'
+        tip_btn.classList.remove('active')
     })
 
     custom_tip.value = ''
-    e.target.style.backgroundColor = 'var(--green_active)';
-    e.target.style.color = 'var(--green_neutral)';
-    e_value = e.target.textContent.slice(0,-1)
-    tip_perc = Number(e_value)
+    e.target.classList.add('active')
+    tip_perc = Number(e.target.textContent.slice(0,-1))
 };
 
 handle_custom_tip = (e) => {
-    e_value = e.target.value
-    e_value = Number(e_value)
-    e_value = e_value.toFixed(0)
-
     tip_btn_list.forEach(tip_btn => {   
-        tip_btn.style.backgroundColor = 'var(--green_neutral)'
-        tip_btn.style.color = 'var(--white)'
+        tip_btn.classList.remove('active')
     })
 
-    tip_perc = e_value
-
+    tip_perc = Number(e.target.value).toFixed(0)
 }
 
 calculate_results = (e) =>{
@@ -78,14 +69,22 @@ reset_btn.addEventListener('click', ()=>{
 
 // Functions
 function get_tip_amnt(bill_value, tip_perc, no_of_people){
-    let tip_amnt = (bill_value*100) * (tip_perc/100);
-    tip_amnt = ((tip_amnt/no_of_people)/100).toFixed(2);
+    if(bill_value <= 0 || no_of_people <=0) return '0.00'
+    
+    const tip_in_cents = Math.round(
+        ((bill_value*100) * (tip_perc/100))
+        /no_of_people);
+    const tip_amnt = parseFloat((tip_in_cents/100).toFixed(2));
     return tip_amnt;
 }
 
 function get_total_amnt(bill_value, tip_amount, no_of_people){
-    let total_amnt = ((bill_value * 100)/no_of_people) + (tip_amount * 100);
-    total_amnt = (total_amnt/100).toFixed(2);
+    if(bill_value <= 0 || no_of_people <=0) return '0.00'
+
+    const total_in_cents = Math.round(
+        ((bill_value * 100)/no_of_people) + (tip_amount * 100)
+    );
+    const total_amnt = parseFloat((total_in_cents/100).toFixed(2));
     return total_amnt;
 }
 

@@ -109,7 +109,7 @@ fieldset:last-of-type label, fieldset:first-of-type label{
 }
 
 
-.calculation fieldset:nth-of-type(2) div{
+.button_group{
     display: grid;
     grid-template-columns:  1fr 1fr;
     column-gap: .7rem;
@@ -118,19 +118,28 @@ fieldset:last-of-type label, fieldset:first-of-type label{
     justify-items: center;
 }
 
-.calculation fieldset:nth-of-type(2) div button{
+.tip_perc{
     width:100%;
     color: var(--white);
     font-size: var(--font_family);
     border: var(--border);
     border-radius: var(--button_border_radius);
     background-color: var(--green_neutral);
+    transition: 0.4s ease-in-out ;
 }
 
-.calculation fieldset:nth-of-type(2) div button:hover{
+.tip_perc:hover{
     background-color: var(--green_body);
     color: var(--green_neutral);
 }
+
+/* Js toggling */
+.tip_perc.active{
+    background-color: var(--green_active);
+    color: var(--green_neutral);
+    transform: scale(1.05);
+}
+/*  */
 
 .calculation fieldset:nth-of-type(2) div input{
     width:100%;
@@ -222,7 +231,7 @@ fieldset:last-of-type label, fieldset:first-of-type label{
         border-radius: var(--border_radius);
     }
 
-    .calculation fieldset:nth-of-type(2) div {
+    .button_group{
         grid-template-columns: repeat(3, 1fr);
         grid-template-rows: repeat(2, 1fr);
     }
