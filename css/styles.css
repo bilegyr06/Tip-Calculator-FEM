@@ -3,6 +3,7 @@
 :root{
     --green_active: hsl(172, 67%, 45%);
     --green_neutral: hsl(183, 100%, 15%);
+    --green_incomplete: hsla(172, 67%, 45%, 0.15);
     --green_label: hsl(186, 14%, 43%);
     --grey_400: hsl(184, 14%, 56%);
     --green_body: hsl(185, 41%, 84%);
@@ -46,12 +47,18 @@ main{
 }
 
 
+.calculation{
+    display: grid;
+}
 
 .calculation fieldset{
-    display: flex;
-    flex-direction: column;
     border: 0;
     margin-block-end: 1.2rem;
+    height: min-content;
+}
+
+.calculation fieldset:nth-of-type(2){
+    place-content: center;
 }
 
 label, legend{
@@ -89,11 +96,16 @@ input#people {
 
 input#customTip{
     padding-inline-end: .5rem;
+    width:100%;
 }
 
 input:focus{
     outline-color: var(--green_active);
-    border: none;
+}
+
+input::placeholder{
+    color: var(--green_label);
+    font-family: calc(var(--font_family) - .5rem);
 }
 
 
@@ -141,14 +153,6 @@ fieldset:last-of-type label, fieldset:first-of-type label{
 }
 /*  */
 
-.calculation fieldset:nth-of-type(2) div input{
-    width:100%;
-}
-
-.calculation fieldset:nth-of-type(2) div input::placeholder{
-    color: var(--green_label);
-    font-family: calc(var(--font_family) - .5rem);
-}
 
 
 .results{
@@ -160,23 +164,23 @@ fieldset:last-of-type label, fieldset:first-of-type label{
     border-radius: calc(var(--border_radius) - .4rem);
 }
 
-.results div{
+.results_group div{
     display: flex;
     flex-direction: row;
     margin-block-end: 1rem;
     justify-content: space-between;
 }
 
-.results div p{
+.results_group div p{
     display: flex;
     flex-direction: column;
 }
 
-.results p span:first-of-type{
+.results_group p span:first-of-type{
     color: var(--white);
     font-size: calc(var(--font_size) - .6rem);
 }
-.results p span:last-of-type{
+.results_group p span:last-of-type{
     color: var(--grey_400);
     font-size: calc(var(--font_size) - .8rem);
 }
@@ -187,19 +191,25 @@ fieldset:last-of-type label, fieldset:first-of-type label{
     font-weight:var(--weight);
 }
 
-.results button{
-    background-color: var(--green_active);
+.reset_btn{
+    background-color: var(--green_incomplete);
     padding: .8rem 2rem;
     border: var(--border);
     border-radius: var(--button_border_radius);
     color: var(--green_neutral);
 }
 
-.results button:hover{
+
+/* Js toggling */
+.completed{
+    background-color: var(--green_active);
+}
+
+.completed:hover{
     background-color: var(--green_body);
     color: var(--green_neutral);
 }
-
+/*  */
 
 
 .attribution {
@@ -219,7 +229,7 @@ fieldset:last-of-type label, fieldset:first-of-type label{
     }
 
     header{
-        margin-block-end: 5rem;
+        margin-block-end: 3rem;
         padding: 0;
         
     }
@@ -229,6 +239,12 @@ fieldset:last-of-type label, fieldset:first-of-type label{
         grid-template-columns: repeat(2,minmax(18rem,19rem));
         column-gap: 2rem;
         border-radius: var(--border_radius);
+        grid-template-rows: 20rem;
+        box-shadow: .4rem .4rem 1rem var(--grey_400);
+    }
+
+    input{
+        height: 2.4rem;
     }
 
     .button_group{
@@ -238,13 +254,18 @@ fieldset:last-of-type label, fieldset:first-of-type label{
 
     .results{
         padding: 2rem;
+        grid-template-rows: 5fr 1fr;
     }
 
-    .results div p{
+    .results_group div{
+        margin-block-end: 1rem;
+    }
+
+    .results_group div p{
         justify-content: center;
     }
     .calc_output{
-        place-content: center;
+        height: min-content;
         font-size: calc(var(--font_size) + .7rem);
     }
 
@@ -257,4 +278,9 @@ fieldset:last-of-type label, fieldset:first-of-type label{
         background-color: transparent;
     }
 
+    footer{
+        margin-block-start: 2rem;
+    }
+
 }
+

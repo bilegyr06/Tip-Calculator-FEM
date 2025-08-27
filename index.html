@@ -18,7 +18,7 @@
     <section class="calculation">
       <fieldset>
         <label for="bill">Bill <span class="no_zero_text">Can't be zero</span></label>
-        <input type="text" id = "bill" name="bill" autocomplete="off">
+        <input type="text" id = "bill" name="bill" placeholder="0" autocomplete="off">
       </fieldset>
 
 
@@ -37,37 +37,41 @@
 
       <fieldset>
         <label for="people">Number of People <span class="no_zero_text">Can't be zero</span></label>
-        <input type="text" id="people" name="people" autocomplete="off">
+        <input type="text" id="people" name="people" placeholder="0" autocomplete="off">
       </fieldset>
     </section>
 
     <section class="results">
-      <div>
-        <p>
-          <span>Tip Amount</span>
-          <span>/ person</span>
-        </p>
+      <div role="group" class="results_group">
+        <div>
+          <p>
+            <span>Tip Amount</span>
+            <span>/ person</span>
+          </p>
 
-        <span class="calc_output js_tip">$0.00</span>
+          <span class="calc_output js_tip">$0.00</span>
+        </div>
+
+        <div>
+          <p>
+            <span>Total</span>
+            <span>/ person</span>
+          </p>
+
+          <span class="calc_output js_total">$0.00</span>
+        </div>
       </div>
 
-      <div>
-        <p>
-          <span>Total</span>
-          <span>/ person</span>
-        </p>
-
-        <span class="calc_output js_total">$0.00</span>
-      </div>
-
-      <button type="reset" id="reset_btn">RESET</button>
+      <button type="reset" class="reset_btn">RESET</button>
     </section>
 
   </main>
 
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="https://www.instagram.com/ay0deji.a/">Ayodeji Ajayi</a>.
-  </div>
+  <footer>
+    <div class="attribution">
+      Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+      Coded by <a href="https://www.instagram.com/ay0deji.a/">Ayodeji Ajayi</a>.
+    </div>
+  </footer>
 </body>
 </html>

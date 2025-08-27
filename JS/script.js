@@ -5,7 +5,7 @@ const bill_input = document.getElementById('bill');
 const tip_btn_list = document.querySelectorAll('.tip_perc');
 const custom_tip = document.getElementById('customTip');
 const count_ppl_input = document.getElementById('people');
-const reset_btn = document.getElementById('reset_btn');
+const reset_btn = document.querySelector('.reset_btn');
 const tip_span = document.querySelector('.js_tip');
 const total_span = document.querySelector('.js_total');
 const error_span = document.querySelectorAll('.no_zero_text');
@@ -45,6 +45,8 @@ calculate_results = (e) =>{
     // Output to the DOM
     tip_span.textContent = `$${tip_amnt}`
     total_span.textContent = `$${total_amnt}`
+
+    check_complete(bill_input, count_ppl_input)
 }
 //
 
@@ -60,21 +62,31 @@ tip_btn_list.forEach(tip_btn => {
     tip_btn.addEventListener('click', calculate_results)
 })
 
-reset_btn.addEventListener('click', ()=>{
-    location.reload()
-})
+
 //
 
 
 
 // Functions
+function check_complete(bill_input, people_input){
+    if (bill_input.value != "" && people_input.value !="") activate_button()
+}
+
+function activate_button(){
+    reset_btn.classList.add('completed')
+    reset_btn.addEventListener('click', ()=>{
+        location.reload()
+    })
+}
+
+
 function get_tip_amnt(bill_value, tip_perc, no_of_people){
     if(bill_value <= 0 || no_of_people <=0) return '0.00'
     
     const tip_in_cents = Math.round(
         ((bill_value*100) * (tip_perc/100))
         /no_of_people);
-    const tip_amnt = parseFloat((tip_in_cents/100).toFixed(2));
+    const tip_amnt = (tip_in_cents/100).toFixed(2);
     return tip_amnt;
 }
 
@@ -84,7 +96,7 @@ function get_total_amnt(bill_value, tip_amount, no_of_people){
     const total_in_cents = Math.round(
         ((bill_value * 100)/no_of_people) + (tip_amount * 100)
     );
-    const total_amnt = parseFloat((total_in_cents/100).toFixed(2));
+    const total_amnt = (total_in_cents/100).toFixed(2);
     return total_amnt;
 }
 
